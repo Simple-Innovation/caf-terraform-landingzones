@@ -8,7 +8,7 @@ resource "azuredevops_variable_group" "variable_group" {
   for_each = try(var.azure_devops.variable_groups, {})
 
   project_id   = data.azuredevops_project.project.id
-  name         = each.value.name
+  name         = lookup(each.value, "useprefix", null) == true ? format("%v-%s", local.global_settings.prefix, each.value.name) : each.value.name
   description  = try(each.value.description, null)
   allow_access = try(each.value.allow_access, false)
 
@@ -32,8 +32,7 @@ resource "azuredevops_variable_group" "variable_group" {
     content {
       # When used with Keyvault, the name must be the keyvault secret name and value must not be set
       name  = variable.value.name
-      value = variable.value.value
+      value = upper(variable.value.name) == "ENVIRONMENT" && variable.value.value == "" ? local.global_settings.environment : lookup(each.value, "useprefix", null) == true && variable.value.name == "AGENT_POOL" ? format("%v-%s", local.global_settings.prefix, variable.value.value) : variable.value.value
     }
   }
-
 }
