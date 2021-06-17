@@ -9,7 +9,7 @@ locals {
 ## Those pools are created in the organization, not the project
 resource "azuredevops_agent_pool" "pool" {
   for_each = try(var.azure_devops.organization_agent_pools, {})
-  #comment to remove
+  
   name = lookup(each.value, "useprefix", null) == true ? format("%v-%s", local.global_settings.prefix, each.value.name) : each.value.name
   auto_provision = lookup(each.value, "auto_provision", false)
 }
@@ -22,7 +22,7 @@ data "azuredevops_agent_pool" "pool" {
   depends_on = [azuredevops_agent_pool.pool]
   for_each   = try(var.azure_devops.project_agent_pools, {})
 
-  name = each.value.name
+  name = lookup(each.value, "useprefix", null) == true ? format("%v-%s", local.global_settings.prefix, each.value.name) : each.value.name
 }
 
 resource "azuredevops_agent_queue" "agent_queue" {
