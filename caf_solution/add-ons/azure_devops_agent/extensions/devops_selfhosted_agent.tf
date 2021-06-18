@@ -23,7 +23,7 @@ resource "azurerm_virtual_machine_extension" "devops_selfhosted_agent" {
   )
   protected_settings = jsonencode(
     {
-      "commandToExecute" : format("bash %s '%s' '%s' '%s' '%s' '%s' '%s' '%s'", var.extensions[each.key].agent_init_script, var.settings[each.key].azure_devops.url, var.settings[each.key].agent_pat, var.settings[each.key].azure_devops.agent_pool.name, var.settings[each.key].azure_devops.agent_pool.agent_name_prefix, var.settings[each.key].azure_devops.agent_pool.num_agents, var.settings[each.key].admin_username, var.settings[each.key].azure_devops.rover_version)
+      "commandToExecute" : format("bash %s '%s' '%s' '%s' '%s' '%s' '%s' '%s'", var.extensions[each.key].agent_init_script, var.settings[each.key].azure_devops.url, var.settings[each.key].agent_pat, try(var.settings[each.key].azure_devops.agent_pool.useprefix, false) == true ? format("%v-%s", var.settings[each.key].prefix, var.settings[each.key].azure_devops.agent_pool.name) : var.settings[each.key].azure_devops.agent_pool.name, var.settings[each.key].azure_devops.agent_pool.agent_name_prefix, var.settings[each.key].azure_devops.agent_pool.num_agents, var.settings[each.key].admin_username, var.settings[each.key].azure_devops.rover_version)
     }
   )
 
