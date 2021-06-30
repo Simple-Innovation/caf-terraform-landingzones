@@ -20,6 +20,10 @@ dynamic_keyvault_secrets = {
       attribute_key = "tenant_id"
       secret_name   = "tenant-id"
     }
+    launchpad_secret_prefix = {
+      secret_name = "launchpad-secret-prefix"
+      value = "aadapp-caf-launchpad-level0"
+    }
     admin = {
       secret_name = "azdo-pat-admin"
       value       = ""

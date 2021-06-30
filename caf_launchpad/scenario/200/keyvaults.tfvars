@@ -167,7 +167,5 @@ keyvaults = {
         destination_key  = "all_regions"
       }
     }
-
   }
-
-}
+} 

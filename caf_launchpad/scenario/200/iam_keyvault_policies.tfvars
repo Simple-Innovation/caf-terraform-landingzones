@@ -59,7 +59,7 @@ keyvault_access_policies = {
     keyvault_level1_rw = {
       # Reference a key to an azure ad group
       azuread_group_key  = "keyvault_level1_rw"
-      secret_permissions = ["Get", "List"]
+      secret_permissions = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
     }
   }
 
@@ -68,7 +68,7 @@ keyvault_access_policies = {
     keyvault_level2_rw = {
       # Reference a key to an azure ad group
       azuread_group_key  = "keyvault_level2_rw"
-      secret_permissions = ["Get", "List"]
+      secret_permissions = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
     }
   }
 
@@ -78,7 +78,7 @@ keyvault_access_policies = {
     keyvault_level3_rw = {
       # Reference a key to an azure ad group
       azuread_group_key  = "keyvault_level3_rw"
-      secret_permissions = ["Get", "List"]
+      secret_permissions = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
     }
   }
 
@@ -88,8 +88,7 @@ keyvault_access_policies = {
     keyvault_level4_rw = {
       # Reference a key to an azure ad group
       azuread_group_key  = "keyvault_level4_rw"
-      secret_permissions = ["Get", "List"]
+      secret_permissions = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
     }
   }
-
 }
