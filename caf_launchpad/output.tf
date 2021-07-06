@@ -25,12 +25,12 @@ output "tfstates" {
   sensitive = true
 }
 
-
 output "launchpad_identities" {
   value = var.propagate_launchpad_identities ? {
     (var.landingzone.key) = {
       azuread_groups = module.launchpad.azuread_groups
       managed_identities = module.launchpad.managed_identities
+      azuread_apps = module.launchpad.aad_apps
     }
   } : {}
   sensitive = true

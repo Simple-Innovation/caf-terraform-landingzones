@@ -1,8 +1,13 @@
 locals {
   remote = {
-    azuread_apps = {
-      for key, value in try(var.landingzone.tfstates, {}) : key => merge(try(data.terraform_remote_state.remote[key].outputs.objects[key].azuread_apps, {}))
-    }
+    azuread_apps = merge(
+      tomap({ "launchpad" = try(data.terraform_remote_state.remote[var.landingzone.global_settings_key].outputs.launchpad_identities["launchpad"].azuread_apps, {}) }),
+      {
+        for key, value in try(var.landingzone.tfstates, {}) : key => merge(
+          try(data.terraform_remote_state.remote[key].outputs.objects[key].azuread_apps, {})
+        )
+      }
+    )
     azuread_groups = merge(
       tomap({ "launchpad" = try(data.terraform_remote_state.remote[var.landingzone.global_settings_key].outputs.launchpad_identities["launchpad"].azuread_groups, {}) }),
       {
