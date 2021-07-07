@@ -1,7 +1,7 @@
 module "launchpad" {
   #source  = "aztfmod/caf/azurerm"
   #version = "~>5.3.2"
-  source = "git::https://github.com/simple-innovation/terraform-azurerm-caf.git?ref=aztfmod-master"
+  source = "git::https://github.com/simple-innovation/terraform-azurerm-caf.git?ref=master"
 
   #source = "../../azurermcaf"
   #source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=master"

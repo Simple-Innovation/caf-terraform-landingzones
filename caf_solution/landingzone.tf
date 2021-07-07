@@ -2,10 +2,10 @@ module "solution" {
   #source  = "aztfmod/caf/azurerm"
   #version = "~>5.4.0"
 
-  # source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=5.4.0"
+  source = "git::https://github.com/simple-innovation/terraform-azurerm-caf.git?ref=master"
   # source = "../../aztfmod"
   
-  source = "../../azurermcaf"
+  #source = "../../azurermcaf"
   # source = "git::https://github.com/aztfmod/terraform-azurerm-caf.git?ref=master"
 
   azuread                               = local.azuread
